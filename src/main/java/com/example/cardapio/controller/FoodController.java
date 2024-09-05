@@ -1,6 +1,6 @@
 package com.example.cardapio.controller;
 
-import com.example.cardapio.domain.Food;
+import com.example.cardapio.dtos.FoodResponseDTO;
 import com.example.cardapio.repository.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +17,8 @@ public class FoodController {
     private FoodRepository repository;
 
     @GetMapping
-    public List<Food> getAll(){
-        List<Food> foodList = repository.findAll();
+    public List<FoodResponseDTO> getAll(){
+        List<FoodResponseDTO> foodList = repository.findAll().stream().map(FoodResponseDTO::new).toList();
         return foodList;
     }
 }
